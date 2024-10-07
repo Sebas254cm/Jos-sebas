@@ -1,16 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuenta Regresiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .countdown {
+            text-align: center;
+            font-size: 2em;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .countdown div {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <p id="countdown"></p>
 
-    <script>
-        const countdownElement = document.getElementById('countdown');
-        const countDownDate = new Date("October 11, 2023 00:00:00").getTime();
+<div class="countdown">
+    <div id="dias">0</div>
+    <div id="horas">0</div>
+    <div id="minutos">0</div>
+    <div id="segundos">0</div>
+</div>
 
-        // ... Resto del código
-    </script>
+<script>
+    // Establecemos la fecha límite: 4 días desde ahora
+    const fechaLimite = new Date().getTime() + (4 * 24 * 60 * 60 * 1000);
+
+    // Actualizamos la cuenta regresiva cada segundo
+    const intervalo = setInterval(() => {
+        const ahora = new Date().getTime();
+        const diferencia = fechaLimite - ahora;
+
+        // Cálculo de días, horas, minutos y segundos
+        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+        // Mostrar el resultado en los respectivos elementos HTML
+        document.getElementById("dias").innerHTML = dias + " Días";
+        document.getElementById("horas").innerHTML = horas + " Horas";
+        document.getElementById("minutos").innerHTML = minutos + " Minutos";
+        document.getElementById("segundos").innerHTML = segundos + " Segundos";
+
+        // Si la cuenta ha llegado a 0, detener el intervalo
+        if (diferencia < 0) {
+            clearInterval(intervalo);
+            document.querySelector('.countdown').innerHTML = "¡Tiempo terminado!";
+        }
+    }, 1000);
+</script>
+
 </body>
 </html>
+
