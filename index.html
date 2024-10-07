@@ -13,6 +13,7 @@
             font-size: 36px;
             font-weight: bold;
             margin-top: 50px;
+            color: black;
         }
     </style>
 </head>
@@ -36,18 +37,32 @@
         // Fecha de finalización (ajusta según tus necesidades)
         const countDownDate = new Date("October 11, 2023 00:00:00").getTime();
 
-        // Actualizar el contador cada segundo
-        setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
+        // Obtener el tiempo restante del almacenamiento local o calcularlo
+        let remainingTime = localStorage.getItem('remainingTime');
 
-            if (distance < 0) {
-                clearInterval(this);
+        // Función para actualizar el contador
+        function updateTimer() {
+            if (!remainingTime) {
+                remainingTime = countDownDate - new Date().getTime();
+                localStorage.setItem('remainingTime', remainingTime);
+            } else {
+                remainingTime -= 1000;
+                localStorage.setItem('remainingTime', remainingTime);
+            }
+
+            if (remainingTime <= 0) {
+                clearInterval(x);
                 countdownElement.textContent = "¡Ya llegó!";
             } else {
-                countdownElement.textContent = formatTime(distance);
+                countdownElement.textContent = formatTime(remainingTime);
             }
-        }, 1000);
+        }
+
+        // Iniciar el intervalo para actualizar el contador cada segundo
+        const x = setInterval(updateTimer, 1000);
+
+        // Iniciar la actualización inicial
+        updateTimer();
     </script>
 </body>
 </html>
