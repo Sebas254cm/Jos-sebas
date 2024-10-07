@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cuenta para nuestro día</title>
+    <title>Cuenta Regresiva</title>
     <style>
-        /* ... Tus estilos CSS aquí ... */
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #countdown {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
-    <h1>Cuenta para nuestro día</h1>
-    <p id="timer"></p>
+    <h1>¡Falta poco!</h1>
+    <p id="countdown"></p>
 
     <script>
         // Función para formatear el tiempo
         function formatTime(time) {
-            // ... Tu función de formato aquí ...
+            const days = Math.floor(time / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((time % (1000 * 60)) / 1000);
+            return `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
 
-        // Obtener el elemento del temporizador y el tiempo almacenado
-        const timerDisplay = document.getElementById('timer');
-        let storedTime = localStorage.getItem('remainingTime');
+        // Obtener el elemento del contador
+        const countdownElement = document.getElementById('countdown');
 
-        // Fecha de finalización
-        const countDownDate = new Date("Oct 11, 2023 00:00:00").getTime();
+        // Fecha de finalización (ajusta según tus necesidades)
+        const countDownDate = new Date("October 11, 2023 00:00:00").getTime();
 
-        // Función para actualizar el temporizador
-        function updateTimer() {
-            // Obtener el tiempo restante del almacenamiento local o calcularlo
-            let remainingTime = storedTime ? parseInt(storedTime) : countDownDate - new Date().getTime();
-            remainingTime -= 1000; // Resta un segundo
+        // Actualizar el contador cada segundo
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
 
-            // Almacenar el tiempo restante en el almacenamiento local
-            localStorage.setItem('remainingTime', remainingTime);
-
-            // Si la cuenta regresiva ha terminado, muestra un mensaje
-            if (remainingTime <= 0) {
-                clearInterval(x);
-                timerDisplay.textContent = "¡Es nuestro día!";
-                return;
+            if (distance < 0) {
+                clearInterval(this);
+                countdownElement.textContent = "¡Ya llegó!";
+            } else {
+                countdownElement.textContent = formatTime(distance);
             }
-
-            // Actualiza el texto del temporizador
-            timerDisplay.textContent = formatTime(remainingTime);
-        }
-
-        // Iniciar el intervalo para actualizar el temporizador cada segundo
-        const x = setInterval(updateTimer, 1000);
-
-        // Iniciar la actualización inicial
-        updateTimer();
+        }, 1000);
     </script>
 </body>
 </html>
