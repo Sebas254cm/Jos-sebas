@@ -37,10 +37,19 @@
 </div>
 
 <script>
-    // Establecemos la fecha límite: 4 días desde ahora
-    const fechaLimite = new Date().getTime() + (4 * 24 * 60 * 60 * 1000);
+    // Verificar si ya hay una fecha límite guardada en localStorage
+    let fechaLimite = localStorage.getItem('fechaLimite');
 
-    // Actualizamos la cuenta regresiva cada segundo
+    // Si no existe, calcularla (4 días desde ahora) y guardarla en localStorage
+    if (!fechaLimite) {
+        fechaLimite = new Date().getTime() + (4 * 24 * 60 * 60 * 1000); // 4 días en milisegundos
+        localStorage.setItem('fechaLimite', fechaLimite);
+    }
+
+    // Convertir la fecha de límite a número (milisegundos)
+    fechaLimite = parseInt(fechaLimite);
+
+    // Actualizar la cuenta regresiva cada segundo
     const intervalo = setInterval(() => {
         const ahora = new Date().getTime();
         const diferencia = fechaLimite - ahora;
@@ -57,14 +66,14 @@
         document.getElementById("minutos").innerHTML = minutos + " Minutos";
         document.getElementById("segundos").innerHTML = segundos + " Segundos";
 
-        // Si la cuenta ha llegado a 0, detener el intervalo
+        // Si la cuenta ha llegado a 0, detener el intervalo y borrar la fecha de localStorage
         if (diferencia < 0) {
             clearInterval(intervalo);
             document.querySelector('.countdown').innerHTML = "¡Tiempo terminado!";
+            localStorage.removeItem('fechaLimite');
         }
     }, 1000);
 </script>
 
 </body>
 </html>
-
