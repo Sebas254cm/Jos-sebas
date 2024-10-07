@@ -12,15 +12,22 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: red; /* Fondo rojo */
+            color: white; /* Texto blanco */
         }
-        .countdown {
+        .container {
             text-align: center;
-            font-size: 2em;
-            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .countdown {
+            font-size: 2em;
         }
         .countdown div {
             margin: 10px 0;
@@ -29,11 +36,14 @@
 </head>
 <body>
 
-<div class="countdown">
-    <div id="dias">0</div>
-    <div id="horas">0</div>
-    <div id="minutos">0</div>
-    <div id="segundos">0</div>
+<div class="container">
+    <h1>Falta para nuestro primer mes</h1>
+    <div class="countdown">
+        <div id="dias">0</div>
+        <div id="horas">0</div>
+        <div id="minutos">0</div>
+        <div id="segundos">0</div>
+    </div>
 </div>
 
 <script>
