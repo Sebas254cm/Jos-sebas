@@ -12,15 +12,18 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: red; /* Fondo rojo */
-            color: white; /* Texto blanco */
+            background-color: #ffcccc; /* Fondo rojo más bajo */
+            position: relative;
+            overflow: hidden;
         }
         .container {
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+            background-color: white; /* Fondo del contenedor blanco */
+            color: black; /* Texto negro */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 1;
         }
         h1 {
             font-size: 2.5em;
@@ -32,9 +35,69 @@
         .countdown div {
             margin: 10px 0;
         }
+        /* Estilos para los corazones */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transform: rotate(-45deg);
+            top: 100%;
+            animation: float 6s infinite;
+            z-index: 0;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+        .heart::after {
+            left: 25px;
+            top: 0;
+        }
+        /* Animación de los corazones flotantes */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+        /* Diferentes tamaños y posiciones de los corazones */
+        .heart:nth-child(2) {
+            left: 20%;
+            animation-duration: 8s;
+        }
+        .heart:nth-child(3) {
+            left: 50%;
+            animation-duration: 10s;
+            animation-delay: 2s;
+        }
+        .heart:nth-child(4) {
+            left: 80%;
+            animation-duration: 7s;
+            animation-delay: 1s;
+        }
     </style>
 </head>
 <body>
+
+<!-- Corazones flotantes -->
+<div class="heart"></div>
+<div class="heart"></div>
+<div class="heart"></div>
+<div class="heart"></div>
 
 <div class="container">
     <h1>Falta para nuestro primer mes</h1>
