@@ -130,14 +130,17 @@
 </div>
 
 <script>
-    // Duración de la cuenta regresiva en segundos (7 minutos)
-    const countdownDuration = 7 * 60; // 7 minutos en segundos
+    // Duración de la cuenta regresiva en segundos (3 minutos)
+    const countdownDuration = 3 * 60; // 3 minutos en segundos
 
-    // Calcular la fecha límite (ahora + 7 minutos)
-    const fechaLimite = new Date().getTime() + (countdownDuration * 1000);
+    // Verificar si ya hay una fecha límite guardada en localStorage
+    let fechaLimite = localStorage.getItem('fechaLimite');
 
-    // Guardar la fecha límite en localStorage
-    localStorage.setItem('fechaLimite', fechaLimite);
+    // Si no existe, calcularla y guardarla en localStorage
+    if (!fechaLimite) {
+        fechaLimite = new Date().getTime() + (countdownDuration * 1000); // 3 minutos en milisegundos
+        localStorage.setItem('fechaLimite', fechaLimite);
+    }
 
     // Convertir la fecha de límite a número (milisegundos)
     const fechaLimiteNum = parseInt(fechaLimite);
@@ -173,4 +176,3 @@
 
 </body>
 </html>
-
