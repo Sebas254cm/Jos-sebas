@@ -130,15 +130,15 @@
 </div>
 
 <script>
-    // Duración de la cuenta regresiva en segundos (20 minutos)
-    const countdownDuration = 20 * 60; // 20 minutos en segundos
+    // Duración de la cuenta regresiva en segundos (15 minutos)
+    const countdownDuration = 15 * 60; // 15 minutos en segundos
 
     // Verificar si ya hay una fecha límite guardada en localStorage
     let fechaLimite = localStorage.getItem('fechaLimite');
 
     // Si no existe, calcularla y guardarla en localStorage
     if (!fechaLimite) {
-        fechaLimite = new Date().getTime() + (countdownDuration * 1000); // 20 minutos en milisegundos
+        fechaLimite = new Date().getTime() + (countdownDuration * 1000); // 15 minutos en milisegundos
         localStorage.setItem('fechaLimite', fechaLimite);
     }
 
