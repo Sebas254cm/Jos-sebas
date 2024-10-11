@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joss&Sebas</title>
+    <title>Joss & Sebas</title>
     <link rel="icon" href="corazon.png" type="image/png"> <!-- Ícono del corazón -->
     <style>
         body {
@@ -119,8 +119,6 @@
     <div class="subtitle">Joss & Sebas</div> <!-- Texto agregado "Joss & Sebas" -->
     <h1>Falta para nuestro primer mes</h1>
     <div class="countdown">
-        <div id="dias"></div>
-        <div id="horas"></div>
         <div id="minutos"></div>
         <div id="segundos"></div>
     </div>
@@ -132,12 +130,15 @@
 </div>
 
 <script>
+    // Duración de la cuenta regresiva en segundos (20 minutos)
+    const countdownDuration = 20 * 60; // 20 minutos en segundos
+
     // Verificar si ya hay una fecha límite guardada en localStorage
     let fechaLimite = localStorage.getItem('fechaLimite');
 
-    // Si no existe, calcularla (4 días desde ahora) y guardarla en localStorage
+    // Si no existe, calcularla y guardarla en localStorage
     if (!fechaLimite) {
-        fechaLimite = new Date().getTime() + (4 * 24 * 60 * 60 * 1000); // 4 días en milisegundos
+        fechaLimite = new Date().getTime() + (countdownDuration * 1000); // 20 minutos en milisegundos
         localStorage.setItem('fechaLimite', fechaLimite);
     }
 
@@ -149,16 +150,12 @@
         const ahora = new Date().getTime();
         const diferencia = fechaLimite - ahora;
 
-        // Cálculo de días, horas, minutos y segundos
-        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-        const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        // Cálculo de minutos y segundos
         const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
         const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
         // Mostrar el resultado en los respectivos elementos HTML
-        document.getElementById("dias").innerHTML = dias > 0 ? dias + " Días" : "";
-        document.getElementById("horas").innerHTML = horas > 0 ? horas + " Horas" : "";
-        document.getElementById("minutos").innerHTML = minutos > 0 ? minutos + " Minutos" : "";
+        document.getElementById("minutos").innerHTML = minutos + " Minutos";
         document.getElementById("segundos").innerHTML = segundos + " Segundos";
 
         // Si la cuenta ha llegado a 0, detener el intervalo y mostrar el video
@@ -169,7 +166,7 @@
 
             // Reproducir el video automáticamente agregando 'autoplay=1'
             const videoIframe = document.getElementById("videoIframe");
-            videoIframe.src = "https://www.youtube.com/embed/93puMDhX7xs?autoplay=1";
+            videoIframe.src = "https://www.youtube.com/embed/G-lI_p0pNiU?autoplay=1";
 
             // Eliminar la fecha límite del almacenamiento local
             localStorage.removeItem('fechaLimite');
