@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Corazones que caen</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #F28B8B; /* Un tono de rojo rosado */
-            overflow: hidden;
-        }
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #FF0000; /* Color de los corazones */
-            border-radius: 50%;
-            animation: fall 2s infinite linear;
-        }
-        @keyframes fall {
-            0% {
-                transform: translateY(-100%);
-            }
-            100% {
-                transform: translateY(100%);
-            }
-        }
-    </style>
+    <title>Feliz Segundo Mes</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="heart-container"></div>
-    <script>
-        const heartContainer = document.getElementById('heart-container');
-
-        setInterval(() => {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + '%';
-            heartContainer.appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 2000);
-        }, 100);
-    </script>
+    <div class="text">Feliz segundo mes</div>
+    <script src="script.js"></script>
 </body>
 </html>
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F28B8B; /* Rojo rosado */
+    overflow: hidden;
+    font-family: 'Pacifico', cursive;
+}
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4rem;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #FF0000; /* Rojo */
+    border-radius: 50%;
+    animation: fall 2s infinite linear;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+const heartContainer = document.getElementById('heart-container');
+
+setInterval(() => {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + '%';
+    heartContainer.appendChild(heart);
+    setTimeout(() => {
+        heart.remove();
+    }, 2000);
+}, 100);
