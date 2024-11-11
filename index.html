@@ -1,114 +1,55 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joss & Sebas</title>
-    <link rel="icon" href="corazon.png" type="image/png"> <!-- Ícono del corazón -->
+    <title>Cuenta Regresiva</title>
     <style>
         body {
+            text-align: center;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffcccc; /* Fondo rojo más bajo */
-            position: relative;
-            overflow: hidden;
+            background-color: #f0f0f0;
         }
-        .container {
+
+        #countdown-container {
             position: relative;
-            width: 560px;
-            height: 315px;
+            width: 300px;
+            margin: 0 auto;
         }
-        h1 {
-            font-size: 2.5em;
-            color: white;
+
+        #countdown {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #title {
             position: absolute;
-            top: 0;
+            top: -50px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
-            margin: 0;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-            text-align: center;
-            width: 100%;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        /* Estilos para los corazones */
-        .heart {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            transform: rotate(-45deg);
-            top: 100%;
-            animation: float 6s infinite;
-            z-index: 0;
-        }
-        .heart::before,
-        .heart::after {
-            content: "";
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            border-radius: 50%;
-        }
-        .heart::before {
-            top: -25px;
-            left: 0;
-        }
-        .heart::after {
-            left: 25px;
-            top: 0;
-        }
-        /* Animación de los corazones flotantes */
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(-45deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(-45deg);
-                opacity: 0;
-            }
-        }
-        /* Diferentes tamaños y posiciones de los corazones */
-        .heart:nth-child(2) {
-            left: 20%;
-            animation-duration: 8s;
-        }
-        .heart:nth-child(3) {
-            left: 50%;
-            animation-duration: 10s;
-            animation-delay: 2s;
-        }
-        .heart:nth-child(4) {
-            left: 80%;
-            animation-duration: 7s;
-            animation-delay: 1s;
+            font-size: 24px;
+            color: #777;
         }
     </style>
 </head>
 <body>
+    <div id="countdown-container">
+        <h2 id="title">Felices 2 meses mi amor! Y por lo que se viene...</h2>
+        <p id="countdown"></p>
+    </div>
 
-<!-- Corazones flotantes -->
-<div class="heart"></div>
-<div class="heart"></div>
-<div class="heart"></div>
-<div class="heart"></div>
+    <script>
+        // Función para formatear el tiempo
+        function formatTime(time) {
+            // ... (tu función de formato aquí)
+        }
 
-<div class="container">
-    <h1>¡Feliz primer mes mi Joss!</h1> <!-- Título sobre el video -->
-    <iframe id="videoIframe" src="https://www.youtube.com/embed/G-lI_p0pNiU?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
+        // Obtener el elemento del contador
+        const countdownElement = document.getElementById('countdown');
 
+        // Fecha de finalización (ajusta según tus necesidades)
+        const countDownDate = new Date("October 11, 2023 00:00:00").getTime();
+
+        // ... (resto del código JavaScript)
+    </script>
 </body>
 </html>
