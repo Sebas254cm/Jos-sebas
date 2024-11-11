@@ -16,6 +16,7 @@
             background-color: #ffcccc; /* Fondo rojo más bajo */
             position: relative;
             overflow: hidden;
+            flex-direction: column;
         }
         .container {
             text-align: center;
@@ -82,6 +83,21 @@
             width: 560px;
             height: 315px;
         }
+        /* Estilos del botón */
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #ff3333;
+        }
     </style>
 </head>
 <body>
@@ -101,6 +117,9 @@
         <iframe src="https://www.youtube.com/embed/Xau0gp3nF_A?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </div>
+
+<!-- Botón "Para más besos" -->
+<button class="button">Para más besos</button>
 
 </body>
 </html>
