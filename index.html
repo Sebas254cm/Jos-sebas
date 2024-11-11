@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Feliz Segundo Mes</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Cuenta Regresiva</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #countdown {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 50px;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <div id="heart-container"></div>
-    <div class="text">Feliz segundo mes</div>
-    <script src="script.js"></script>
+    <h1>¡Falta poco!</h1>
+    <p id="countdown"></p>
+
+    <script>
+        // Función para formatear el tiempo
+        function formatTime(time) {
+            const days = Math.floor(time / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((time % (1000 * 60)) / 1000);
+            return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Obtener el elemento del contador
+        const countdownElement = document.getElementById('countdown');
+
+        // Fecha de finalización (ajusta según tus necesidades)
+        const countDownDate = new Date("October 11, 2023 00:00:00").getTime();
+
+        // Obtener el tiempo restante del almacenamiento local o calcularlo
+        let remainingTime = localStorage.getItem('remainingTime');
+
+        // Función para actualizar el contador
+        function updateTimer() {
+            if (!remainingTime) {
+                remainingTime = countDownDate - new Date().getTime();
+                localStorage.setItem('remainingTime', remainingTime);
+            } else {
+                remainingTime -= 1000;
+                localStorage.setItem('remainingTime', remainingTime);
+            }
+
+            if (remainingTime <= 0) {
+                clearInterval(x);
+                countdownElement.textContent = "¡Ya llegó!";
+            } else {
+                countdownElement.textContent = formatTime(remainingTime);
+            }
+        }
+
+        // Iniciar el intervalo para actualizar el contador cada segundo
+        const x = setInterval(updateTimer, 1000);
+
+        // Iniciar la actualización inicial
+        updateTimer();
+    </script>
 </body>
 </html>
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #F28B8B; /* Rojo rosado */
-    overflow: hidden;
-    font-family: 'Pacifico', cursive;
-}
-
-.text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 4rem;
-}
-
-.heart {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #FF0000; /* Rojo */
-    border-radius: 50%;
-    animation: fall 2s infinite linear;
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(100%);
-    }
-}
-const heartContainer = document.getElementById('heart-container');
-
-setInterval(() => {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.left = Math.random() * 100 + '%';
-    heartContainer.appendChild(heart);
-    setTimeout(() => {
-        heart.remove();
-    }, 2000);
-}, 100);
