@@ -17,9 +17,9 @@
             position: relative;
             overflow: hidden;
             flex-direction: column;
+            text-align: center;
         }
         .container {
-            text-align: center;
             background-color: white; /* Fondo del contenedor blanco */
             color: black; /* Texto negro */
             padding: 20px;
@@ -27,13 +27,14 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
             z-index: 1;
             position: relative;
+            max-width: 90%;
         }
         h1 {
-            font-size: 2em;
+            font-size: 6vw; /* Tamaño de fuente adaptable */
             margin-bottom: 20px;
         }
         .subtitle {
-            font-size: 1.5em;
+            font-size: 4vw; /* Tamaño adaptable */
             margin-bottom: 10px;
         }
         /* Estilos para los corazones */
@@ -80,14 +81,15 @@
             margin-top: 20px;
         }
         iframe {
-            width: 560px;
+            width: 100%;
+            max-width: 560px;
             height: 315px;
         }
         /* Estilos del botón */
         .button {
             margin-top: 20px;
             padding: 10px 20px;
-            font-size: 1em;
+            font-size: 1.2em;
             background-color: #ff4d4d;
             color: white;
             border: none;
@@ -115,7 +117,7 @@
 
     <!-- Contenedor del video de YouTube -->
     <div class="video-container">
-        <iframe src="https://www.youtube.com/shorts/JcmXwUXHzWA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/JcmXwUXHzWA?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </div>
 
