@@ -35,12 +35,6 @@
             font-size: 1.5em;
             margin-bottom: 10px;
         }
-        .countdown {
-            font-size: 2em;
-        }
-        .countdown div {
-            margin: 10px 0;
-        }
         /* Estilos para los corazones */
         .heart {
             position: absolute;
@@ -82,7 +76,6 @@
         }
         /* Estilos para el iframe del video */
         .video-container {
-            display: none;
             margin-top: 20px;
         }
         iframe {
@@ -99,61 +92,15 @@
 <div class="heart"></div>
 <div class="heart"></div>
 
-<div class="container" id="countdownContainer">
+<div class="container">
     <div class="subtitle">Joss & Sebas</div> <!-- Texto agregado "Joss & Sebas" -->
     <h1>Tú eres la historia más bonita que el destino escribió en mi vida</h1>
-    <div class="countdown">
-        <div id="minutos"></div>
-        <div id="segundos"></div>
+
+    <!-- Contenedor del video de YouTube -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Xau0gp3nF_A?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </div>
-
-<!-- Contenedor del video de YouTube -->
-<div class="video-container" id="videoContainer">
-    <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-
-<script>
-    // Obtener la hora actual
-    const ahora = new Date();
-
-    // Fecha límite es 25 minutos desde el momento actual
-    let fechaLimite = localStorage.getItem('fechaLimite');
-    if (!fechaLimite || new Date(fechaLimite) < ahora) {
-        fechaLimite = new Date(ahora.getTime() + 25 * 60 * 1000); // 25 minutos desde ahora
-        localStorage.setItem('fechaLimite', fechaLimite);
-    } else {
-        fechaLimite = new Date(fechaLimite);
-    }
-
-    // Actualizar la cuenta regresiva cada segundo
-    const intervalo = setInterval(() => {
-        const ahora = new Date().getTime();
-        const diferencia = fechaLimite.getTime() - ahora;
-
-        // Cálculo de minutos y segundos
-        const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-        const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-        // Mostrar el resultado en los respectivos elementos HTML
-        document.getElementById("minutos").innerHTML = minutos + " Minutos";
-        document.getElementById("segundos").innerHTML = segundos + " Segundos";
-
-        // Si la cuenta ha llegado a 0, detener el intervalo y mostrar el video
-        if (diferencia <= 0) {
-            clearInterval(intervalo);
-            document.getElementById("countdownContainer").style.display = "none"; // Ocultar la cuenta regresiva
-            document.getElementById("videoContainer").style.display = "block"; // Mostrar el video
-
-            // Reproducir el video automáticamente agregando 'autoplay=1'
-            const videoIframe = document.getElementById("videoIframe");
-            videoIframe.src = "https://www.youtube.com/embed/Xau0gp3nF_A?autoplay=1";
-
-            // Borrar la fecha límite de localStorage para que no se repita
-            localStorage.removeItem('fechaLimite');
-        }
-    }, 1000);
-</script>
 
 </body>
 </html>
